@@ -2,6 +2,7 @@ from imgurpython import ImgurClient
 
 import click
 import os
+import json
 
 @click.command()
 @click.argument('gif', type=click.Path(exists=True))
@@ -17,11 +18,12 @@ def upload_gif(gif):
 
     client = ImgurClient(client_id, client_secret)
 
-    click.echo('Uploading file {}'.format(click.format_filename(gif)))
+    #click.echo('Uploading file {}'.format(click.format_filename(gif)))
 
     response = client.upload_from_path(gif)
+    print(json.dumps(response))
 
-    click.echo('File uploaded - see your gif at {}'.format(response['link']))
+    #click.echo('File uploaded - see your gif at {}'.format(response['link']))
 
 if __name__ == '__main__':
     upload_gif()
